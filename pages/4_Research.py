@@ -1,58 +1,50 @@
 import streamlit as st
-import streamlit as st
+from helpers.helpers import load_css, display_card
+from helpers.helpers import load_footer, load_navbar_style
 
-# Add custom CSS to create a Material UI-like card
-card_css = """
-<style>
-.material-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px;
-    width: 300px;
-    transition: transform 0.2s ease-in-out;
-}
+load_navbar_style()
+load_footer()
 
-.material-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-}
+# Load css stylesheet
+load_css("./assets/static/css/styles.css")
 
-.material-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
+# Create two columns with a 50:50 width ratio
+col1, col2 = st.columns(2)
 
-.material-card h3 {
-    margin: 20px 0 10px 0;
-    font-size: 1.5em;
-    text-align: center;
-}
+with col1:
+    display_card(
+        "https://via.placeholder.com/300x200",
+        "Card Title",
+        "This is a description of the card content. It can be a short summary or some important details.",
+    )
+with col2:
+    display_card(
+        "https://via.placeholder.com/300x200",
+        "Using adsorption kinetics to assemble vertically \
+				 aligned nanorods at liquid interfaces for\
+				 metamaterial applications.",
+        "Vertically aligned monolayers of metallic nanorods have a wide \
+                  range of applications as metamaterials or in surface enhanced Raman \
+				  spectroscopy. However the fabrication of such structures using current \
+				  top-down methods or through assembly on solid substrates is either \
+				  difficult to scale up or have limited possibilities for further \
+				  modification after assembly. The aim of this paper is to use the adsorption\
+				  kinetics of cylindrical nanorods at a liquid interface as a novel route \
+				  for assembling vertically aligned nanorod arrays that overcomes these problems.",
+    )
 
-.material-card p {
-    text-align: center;
-    color: #555555;
-}
-</style>
-"""
+# Create two columns with a 50:50 width ratio
+col3, col4 = st.columns(2)
 
-# Inject the CSS into the Streamlit app
-st.markdown(card_css, unsafe_allow_html=True)
-
-# Create a container for the card
-card_html = """
-<div class="material-card">
-    <img src="https://via.placeholder.com/300x200" alt="Card Image">
-    <h3>Card Title</h3>
-    <p>This is a description of the card content. It can be a short summary or some important details.</p>
-</div>
-"""
-
-# Display the card in Streamlit
-st.markdown(card_html, unsafe_allow_html=True)
-
+with col3:
+    display_card(
+        "https://via.placeholder.com/300x200",
+        "Card Title",
+        "This is a description of the card content. It can be a short summary or some important details.",
+    )
+with col4:
+    display_card(
+        "https://via.placeholder.com/300x200",
+        "Card Title",
+        "This is a description of the card content. It can be a short summary or some important details.",
+    )

@@ -1,24 +1,15 @@
 import streamlit as st
-import base64
+from helpers.helpers import load_footer, load_navbar_style, get_base64_image
 
-def get_base64_image(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
+load_navbar_style()
+load_footer()
+image_base64 = get_base64_image("assets/static/images/logo.png")
 
-image_base64 = get_base64_image("assets/static/logo.png")
+_col1, col2, _col3 = st.columns([0.1, 0.8, 0.1])
 
-st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url("data:image/png;base64,{image_base64}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        min-height: 100vh;
-        width: 50%;
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+with col2:
+    st.html(
+        f"""
+            <img src="data:image/png;base64,{image_base64}" alt="background logo" width="480" height="361">
+    """
+    )

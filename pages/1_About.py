@@ -1,58 +1,57 @@
 import streamlit as st
-import streamlit as st
+from helpers.helpers import load_css, profile_card, load_footer, load_navbar_style
 
-# Add custom CSS to create a Material UI-like card
-card_css = """
-<style>
-.material-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px;
-    width: 300px;
-    transition: transform 0.2s ease-in-out;
-}
+# Load css stylesheet
+load_css("./assets/static/css/styles.css")
+load_navbar_style()
+load_footer()
 
-.material-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-}
+# Create first row with two columns with a 50:50 width ratio
+col1, col2 = st.columns(2)
 
-.material-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
+with col1:
+    profile_card(
+        "./assets/static/images/staff_profiles/scott.png",
+        "Scott Morgan",
+        " PhD.",
+        "Principle Scientist & Engineer",
+        "Passionate surfer whose enthusiasm far exceeds his skill",
+        {
+            "fa-brands fa-linkedin": "https://www.linkedin.com/in/scott-oliver-morgan/",
+            "fa-brands fa-google": "https://scholar.google.com/citations?user=LI_qhRsAAAAJ&hl=en",
+            "fa-brands fa-github": "https://github.com/scottolivermorgan",
+        },
+    )
+with col2:
+    profile_card(
+        "./assets/static/images/staff_profiles/chris.png",
+        "Chris Lowe",
+        " Mphys.",
+        "Scientific Consultant",
+        "Avid motorbike fan, technologist & wannabe chef.",
+        {"fa-brands fa-linkedin": "https://www.linkedin.com/in/chris-lowe-86221899/"},
+    )
 
-.material-card h3 {
-    margin: 20px 0 10px 0;
-    font-size: 1.5em;
-    text-align: center;
-}
+# Create second row with two columns with a 50:50 width ratio
+col3, col4 = st.columns(2)
 
-.material-card p {
-    text-align: center;
-    color: #555555;
-}
-</style>
-"""
-
-# Inject the CSS into the Streamlit app
-st.markdown(card_css, unsafe_allow_html=True)
-
-# Create a container for the card
-card_html = """
-<div class="material-card">
-    <img src="https://via.placeholder.com/300x200" alt="Card Image">
-    <h3>Card Title</h3>
-    <p>This is a description of the card content. It can be a short summary or some important details.</p>
-</div>
-"""
-
-# Display the card in Streamlit
-st.markdown(card_html, unsafe_allow_html=True)
-
+with col3:
+    profile_card(
+        "./assets/static/images/staff_profiles/jacqueline.png",
+        "Jacqueline Maxfield",
+        " Bsc. Hons",
+        "Lead Branding and Design",
+        "Graphic designer & cat lover with an obsession for typography.",
+        {"fa-brands fa-linkedin": "https://www.linkedin.com/in/maxfieldjacqueline/"},
+    )
+with col4:
+    profile_card(
+        "./assets/static/images/staff_profiles/charlie.png",
+        "Charlie Street",
+        "",
+        "Sales Lead",
+        "Tenacious outdoorsman, forager and spear fisherman.",
+        {
+            "fa-brands fa-linkedin": "https://www.linkedin.com/in/charlie-heath-a3a435135/"
+        },
+    )
