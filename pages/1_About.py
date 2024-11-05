@@ -4,7 +4,7 @@ from helpers.helpers import load_css, profile_card, load_footer, load_navbar_sty
 # Load css stylesheet
 load_css("./assets/static/css/styles.css")
 load_navbar_style()
-load_footer()
+
 
 # Create first row with two columns with a 50:50 width ratio
 col1, col2 = st.columns(2)
@@ -55,3 +55,5 @@ with col4:
             "fa-brands fa-linkedin": "https://www.linkedin.com/in/charlie-heath-a3a435135/"
         },
     )
+
+load_footer()
