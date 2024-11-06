@@ -3,7 +3,7 @@ from helpers.helpers import load_css, display_card
 from helpers.helpers import load_footer, load_navbar_style
 
 load_navbar_style()
-load_footer()
+
 
 # Load css stylesheet
 load_css("./assets/static/css/styles.css")
@@ -48,3 +48,6 @@ with col4:
         "Card Title",
         "This is a description of the card content. It can be a short summary or some important details.",
     )
+
+
+load_footer()
