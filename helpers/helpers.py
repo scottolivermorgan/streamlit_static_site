@@ -149,7 +149,7 @@ def display_card(image_src: str, title: str, description: str):
     # Create a container for the card with dynamic inputs
     card_html = f"""
     <div class="material-card">
-        <img src="{image_src}" alt="Card Image">
+        <img src="{img_to_html(image_src)}" alt="Card Image">
         <h4>{title}</h4>
         <p>{description}</p>
     </div>
@@ -159,97 +159,6 @@ def display_card(image_src: str, title: str, description: str):
     st.markdown(card_html, unsafe_allow_html=True)
 
 
-# def profile_card(image_src: str,
-#                 title: str,
-#                 postfix: str,
-#                 role: str,
-#                 description: str,
-#                 linkedin_url: str):
-#    """
-#    Displays a customizable card with an image, title, and description in a Streamlit app.
-#
-#    Args:
-#        image_src (str): The source URL or file path of the image to be displayed on the card.
-#        title (str): The title text to be displayed on the card.
-#        description (str): The paragraph text to be displayed as the card's content.
-#
-#    Example:
-#        card("https://via.placeholder.com/300x200", "Card Title", "This is a description of the card content. It can be a short summary or some important details.")
-#    """
-#
-#    # Add FontAwesome CDN to the app
-#    st.markdown("""
-#        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-#    """, unsafe_allow_html=True)
-#
-#    card_html = f"""
-#    <div class="material-card">
-#        {img_to_html(image_src)}
-#        <center>
-#            <h4>{title}<sup>{postfix}<sup/></h4>
-#        <center/>
-#        <h5>{role}<h5/>
-#        <p>{description}</p>
-#        <a href="{linkedin_url}" target="_blank">
-#            <i class="fa-brands fa-linkedin" style="font-size:30px;color:#0e76a8;"></i>
-#        </a>
-#    </div>
-#    """
-#
-#    # Display the card in Streamlit
-#    st.markdown(card_html, unsafe_allow_html=True)
-
-
-# def profile_card(image_src: str,
-#                 title: str,
-#                 postfix: str,
-#                 role: str,
-#                 description: str,
-#                 links: dict):
-#    """
-#    Displays a customizable card with an image, title, and description in a Streamlit app.
-#
-#    Args:
-#        image_src (str): The source URL or file path of the image to be displayed on the card.
-#        title (str): The title text to be displayed on the card.
-#        postfix (str): A postfix to display next to the title (like a superscript).
-#        role (str): The role or position of the person.
-#        description (str): The paragraph text to be displayed as the card's content.
-#        links (dict): A dictionary where keys are FontAwesome icon classes and values are corresponding URLs.
-#
-#    Example:
-#        profile_card("https://via.placeholder.com/300x200", "Card Title", "PhD", "Data Scientist",
-#                     "This is a description of the card content.",
-#                     {"fa-brands fa-linkedin": "https://linkedin.com/in/username",
-#                      "fa-brands fa-github": "https://github.com/username"})
-#    """
-#
-#    # Add FontAwesome CDN to the app
-#    st.markdown("""
-#        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-#    """, unsafe_allow_html=True)
-#
-#    # Generate HTML for icons based on provided links
-#    icons_html = "".join(
-#        f'<a href="{url}" target="_blank" style="margin: 0 10px;">'
-#        #f'<i class="{icon_class}" style="font-size:30px;color:#0e76a8;"></i></a>'
-#        f'<i class="{icon_class}"></i></a>'
-#        for icon_class, url in links.items() if url
-#    )
-#
-#    card_html = f"""
-#    <div class="material-card">
-#        {img_to_html(image_src)}
-#        <h4>{title}<sup>{postfix}</sup></h4>
-#        <h5>{role}</h5>
-#        <p>{description}</p>
-#        <div style="margin-top: 10px;">
-#            {icons_html}
-#        </div>
-#    </div>
-#    """
-#
-#    st.markdown(card_html, unsafe_allow_html=True)
 def profile_card(
     image_src: str, title: str, postfix: str, role: str, description: str, links: dict
 ):
@@ -313,6 +222,70 @@ def profile_card(
             <p>{description}</p>
             <div style="margin-top: 10px;">
                 {icons_html}
+            </div>
+        </div>
+    </div>
+    """
+
+    st.markdown(card_html, unsafe_allow_html=True)
+
+
+
+
+def research_card(
+    image_src: str, title: str, description: str, link: str
+):
+    """
+    Displays a customizable card with an image, title, and description in a Streamlit app.
+
+    Args:
+        image_src (str): The source URL or file path of the image to be displayed on the card.
+        title (str): The title text to be displayed on the card.
+        postfix (str): A postfix to display next to the title (like a superscript).
+        role (str): The role or position of the person.
+        description (str): The paragraph text to be displayed as the card's content.
+        links (dict): A dictionary where keys are FontAwesome icon classes and values are corresponding URLs.
+    """
+
+    # Add FontAwesome CDN to the app
+    st.markdown(
+        """
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            .profile-card-container {
+                display: flex;
+                justify-content: center;
+                align-items: stretch;
+                height: 100%;
+            }
+            .profile-card {
+                padding: 20px;
+                text-align: center;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .profile-card h4, .profile-card h5, .profile-card p {
+                margin: 10px 0;
+            }
+        </style>
+    """,
+        unsafe_allow_html=True,
+    )
+
+    # Card HTML structure
+    card_html = f"""
+    <div class="profile-card-container">
+        <div class="profile-card">
+            {img_to_html(image_src)}
+            <h4>{title}</h4>
+            <p>{description}</p>
+            <div style="margin-top: 10px;">
+                <a href={link}>Published Article</a>
             </div>
         </div>
     </div>
